@@ -19,7 +19,7 @@ export default function Home() {
                     mt-6
                     text-center
                     font-bold
-                    text-3xl
+                    text-2xl
                     tracking-tight
                     text-gray-900
                     ">

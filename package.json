@@ -17,6 +17,7 @@
     "clsx": "^2.0.0",
     "next": "13.5.4",
     "next-auth": "^4.23.2",
+    "next-superjson-plugin": "^0.5.9",
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.47.0",
