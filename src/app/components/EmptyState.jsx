@@ -23,7 +23,7 @@ const EmptyState = () => {
                 mt-2
                 text-xl
                 font-semibold
-                text-gray-900
+                text-purple-700
             ">
                 Select a chat or start a new conversation
             </h3>
