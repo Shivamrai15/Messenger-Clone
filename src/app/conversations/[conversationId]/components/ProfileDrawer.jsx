@@ -1,17 +1,20 @@
 'use client';
 
 import useOtherUsers from "@/app/hooks/useOtherUsers";
-import { Fragment, useMemo } from "react";
+import { Fragment, useMemo, useState } from "react";
 import format from "date-fns/format";
 import { Dialog, Transition } from "@headlessui/react";
 import {IoClose, IoTrash} from 'react-icons/io5'
 import Avatar from "@/app/components/Avatar";
+import ConfirmModal from "./ConfirmModal";
 
 const ProfileDrawer = ({
     isOpen, onClose, data
 }) => {
 
     const otherUser = useOtherUsers(data);
+
+    const [confirmOpen, setConfirmOpen] = useState(false);
 
     const joinedDate = useMemo(()=>{
         return format(new Date(otherUser.createdAt), 'PP');
@@ -30,6 +33,10 @@ const ProfileDrawer = ({
 
     return (
         <>
+            <ConfirmModal 
+                isOpen = {confirmOpen}
+                onClose={()=>setConfirmOpen(false)}    
+            />
             <Transition.Root show = {isOpen} as={Fragment}>
                 <Dialog as = 'div' className='relative z-50' onClose={onClose}>
                     <Transition.Child
@@ -135,7 +142,7 @@ const ProfileDrawer = ({
                                                     </div>
                                                     <div className="flex gap-10 my-8">
                                                         <div
-                                                            onClick={()=>{}}
+                                                            onClick={()=>setConfirmOpen(true)}
                                                             className="
                                                                 flex
                                                                 flex-col
@@ -153,7 +160,8 @@ const ProfileDrawer = ({
                                                                 flex
                                                                 justify-center
                                                                 items-center
-                                                            ">
+                                                            "
+                                                            >
                                                                 <IoTrash className="text-purple-600" size = {20}/>
                                                             </div>
                                                             <div className="text-sm font-light text-neutral-600">
