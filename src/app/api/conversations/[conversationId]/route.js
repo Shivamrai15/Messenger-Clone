@@ -1,5 +1,6 @@
 import getCurrentUser from "@/app/actions/getCurrentUser";
 import client from "@/app/libs/prismadb";
+import { pusherServer } from "@/app/libs/pusher";
 import { NextResponse } from "next/server";
 
 export async function DELETE(request, {params}){
@@ -8,7 +9,7 @@ export async function DELETE(request, {params}){
         const currentUser = await getCurrentUser();
 
         if (!currentUser?.id){
-            return new NextResponse("Unauthorized", {status : 401});
+            return NextResponse.json(null);
 
         }
         
@@ -32,6 +33,10 @@ export async function DELETE(request, {params}){
                     hasSome : [currentUser.id]
                 }
             }
+        });
+
+        existingConverstaion.users.forEach((user)=>{
+            pusherServer.trigger(user.email, 'conversation:remove', existingConverstaion);
         });
 
         return NextResponse.json(deletedConversation);

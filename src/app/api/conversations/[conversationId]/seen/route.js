@@ -1,10 +1,10 @@
 import { NextResponse } from "next/server";
 import getCurrentUser from "@/app/actions/getCurrentUser";
 import client from "@/app/libs/prismadb";
+import { pusherServer } from "@/app/libs/pusher";
 
 export async function POST (request, {params} ){
     try {
-
         const currentUser = await getCurrentUser();
         const {conversationId} = params;
 
@@ -59,7 +59,18 @@ export async function POST (request, {params} ){
             }
         });
 
-        return NextResponse.json(updateMessage);
+        await pusherServer.trigger(currentUser.email, 'conversation:update', {
+            id : conversationId,
+            messages : [updateMessage]
+        });
+
+        if (lastMessage.seenIds.indexOf(currentUser.id) !== -1){
+            return NextResponse.json(conversation);
+        }
+
+        await pusherServer.trigger(conversationId, 'message:update', updateMessage);
+
+        return new NextResponse('Success');
 
         
     } catch (error) {
