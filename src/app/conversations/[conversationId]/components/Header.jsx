@@ -6,6 +6,7 @@ import Link from "next/link";
 import {HiChevronLeft, HiEllipsisHorizontal} from 'react-icons/hi2'
 import Avatar from "@/app/components/Avatar";
 import ProfileDrawer from "./ProfileDrawer";
+import AvatarGroup from "@/app/components/AvatarGroup";
 
 const Header = ({conversation}) => {
     const otherUser = useOtherUsers(conversation);
@@ -13,7 +14,7 @@ const Header = ({conversation}) => {
 
     const statusText = useMemo(()=>{
         if (conversation?.isGroup){
-            return `${conversation.users.length}`
+            return `${conversation.users.length} Members`
         }
         return 'Active'
     }, [conversation]);
@@ -44,7 +45,11 @@ const Header = ({conversation}) => {
                     >
                         <HiChevronLeft size={32}/>
                     </Link>
-                    <Avatar user={otherUser} />
+                    {conversation.isGroup ? (
+                        <AvatarGroup users = {conversation.users}/>
+                    ) : (
+                        <Avatar user={otherUser} />
+                    )}
                     <div className="flex flex-col">
                         <div className="font-medium">
                             {conversation.name || otherUser.name}

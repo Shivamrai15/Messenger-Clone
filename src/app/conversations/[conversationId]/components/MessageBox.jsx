@@ -5,9 +5,12 @@ import clsx from "clsx";
 import { useSession } from "next-auth/react";
 import { format } from "date-fns";
 import Image from "next/image";
+import { useState } from "react";
+import ImageModal from "./ImageModal";
 
 const MessageBox = ({isLast, data}) => {
     const session = useSession();
+    const [imageModalOpen, setImageOpneModal] = useState(false);
 
     const isOwn = session?.data?.user?.email === data?.sender?.email;
     const seenList = (data.seen || [])
@@ -48,8 +51,14 @@ const MessageBox = ({isLast, data}) => {
                     </div>
                 </div>
                 <div className={message}>
+                    <ImageModal 
+                        src = {data.image}
+                        isOpen = {imageModalOpen}
+                        onClose = {()=>setImageOpneModal(false)}
+                    />
                     {data.image ? (
                         <Image
+                            onClick={()=>setImageOpneModal(true)}
                             alt="image"
                             height={288}
                             width={288}

@@ -7,6 +7,7 @@ import { useSession } from "next-auth/react";
 import clsx from "clsx";
 import useOtherUsers from "@/app/hooks/useOtherUsers";
 import Avatar from "@/app/components/Avatar";
+import AvatarGroup from "@/app/components/AvatarGroup";
 
 const ConversationBox = ({data, selected}) => {
 
@@ -65,7 +66,13 @@ const ConversationBox = ({data, selected}) => {
                 p-3
             `, selected ? 'bg-neutral-100' : 'bg-white')}
         >
-            <Avatar user={otherUser}/>
+            {data?.isGroup ? (
+                <AvatarGroup
+                    users = {data.users}
+                />
+            ) : (
+                <Avatar user={otherUser}/>
+            )}
             <div className="min-w-0 flex-1">
                 <div className="focus:outline-none">
                     <div className="flex justify-between items-center mb-1">
