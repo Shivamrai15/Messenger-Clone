@@ -7,3 +7,19 @@ body,
 :root{
     height: 100%;
 }
+
+
+.emoji-panel::-webkit-scrollbar{
+    width: 10px;
+}
+.emoji-panel::-webkit-scrollbar-track{
+    background: #e5e5e5;
+    margin: 2px;
+}
+
+.emoji-panel::-webkit-scrollbar-thumb {
+    background-color: #bababa;
+    border-radius: 5px;
+    border: 3px solid transparent;
+ 
+}

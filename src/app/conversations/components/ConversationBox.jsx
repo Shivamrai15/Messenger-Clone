@@ -8,6 +8,8 @@ import clsx from "clsx";
 import useOtherUsers from "@/app/hooks/useOtherUsers";
 import Avatar from "@/app/components/Avatar";
 import AvatarGroup from "@/app/components/AvatarGroup";
+import { CgImage } from 'react-icons/cg';
+import { BiCheckDouble, BiCheck} from 'react-icons/bi'
 
 const ConversationBox = ({data, selected}) => {
 
@@ -41,7 +43,7 @@ const ConversationBox = ({data, selected}) => {
 
     const lastMessageText = useMemo(()=>{
         if(lastMessage?.image){
-            return "Image";
+            return <span className="flex items-center"><span className="inline-block mr-1">{<CgImage/>}</span>Image</span>;
         }
         if (lastMessage?.body){
             return lastMessage.body;
@@ -96,7 +98,29 @@ const ConversationBox = ({data, selected}) => {
                             truncate
                             text-xs
                         `, hasSeen ? 'text-gray-500' : 'text-black font-medium')}>
-                            {lastMessageText}
+                            {hasSeen ? (
+                                <span
+                                    className="flex items-center"
+                                >   
+                                    <span className="inline-block mr-1">
+                                        <BiCheckDouble className="text-purple-700"/>
+                                    </span>
+                                    <span className="truncate">
+                                        {lastMessageText}
+                                    </span>
+                                </span>
+                            ) : (
+                                <span
+                                    className="flex items-center"
+                                >
+                                    <span className="inline-block mr-1">
+                                        <BiCheck />
+                                    </span>
+                                    <span className="truncate">
+                                        {lastMessageText}
+                                    </span>
+                                </span>
+                            )}
                         </p>
                     </div>
                 </div>
