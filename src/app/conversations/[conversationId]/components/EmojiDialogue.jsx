@@ -137,8 +137,9 @@ const EmojiDialogue = ({ setValue, getValues }) => {
             >
                 <h4 className="text-gray-700 text-sm font-semibold">Smileys</h4>
                 <div className="flex flex-wrap items-center">
-                    {smileyEmojis.map((emoji)=>(
+                    {smileyEmojis.map((emoji, index)=>(
                         <button
+                            key = {index}
                             onClick={()=>handleClick(emoji)}
                             className="
                                 p-[2px]
@@ -152,8 +153,9 @@ const EmojiDialogue = ({ setValue, getValues }) => {
                 </div>
                 <h4 className="text-gray-700 mt-5 text-sm font-semibold">People</h4>
                 <div className="flex flex-wrap items-center">
-                    {peopleEmojis.map((emoji)=>(
+                    {peopleEmojis.map((emoji, index)=>(
                         <button
+                            key = {index}
                             onClick={()=>handleClick(emoji)}
                             className="
                                 p-[2px]
@@ -167,8 +169,9 @@ const EmojiDialogue = ({ setValue, getValues }) => {
                 </div>
                 <h4 className="text-gray-700 mt-5 text-sm font-semibold">Animals & nature</h4>
                 <div className="flex flex-wrap items-center">
-                    {animalsAndNatureEmojis.map((emoji)=>(
+                    {animalsAndNatureEmojis.map((emoji, index)=>(
                         <button
+                            key = {index}
                             onClick={()=>handleClick(emoji)}
                             className="
                                 p-[2px]
@@ -182,8 +185,9 @@ const EmojiDialogue = ({ setValue, getValues }) => {
                 </div>
                 <h4 className="text-gray-700 mt-5 text-sm font-semibold">Food & drink</h4>
                 <div className="flex flex-wrap items-center">
-                    {foodAndDrinkEmojis.map((emoji)=>(
+                    {foodAndDrinkEmojis.map((emoji, index)=>(
                         <button
+                            key = {index}
                             onClick={()=>handleClick(emoji)}
                             className="
                                 p-[2px]
@@ -197,8 +201,9 @@ const EmojiDialogue = ({ setValue, getValues }) => {
                 </div>
                 <h4 className="text-gray-700 mt-5 text-sm font-semibold">Travel & Places</h4>
                 <div className="flex flex-wrap items-center">
-                    {travelAndPlacesEmojis.map((emoji)=>(
+                    {travelAndPlacesEmojis.map((emoji, index)=>(
                         <button
+                            key = {index}
                             onClick={()=>handleClick(emoji)}
                             className="
                                 p-[2px]
@@ -212,8 +217,9 @@ const EmojiDialogue = ({ setValue, getValues }) => {
                 </div>
                 <h4 className="text-gray-700 mt-5 text-sm font-semibold">Travel & Places</h4>
                 <div className="flex flex-wrap items-center">
-                    {travelAndPlacesEmojis.map((emoji)=>(
+                    {travelAndPlacesEmojis.map((emoji, index)=>(
                         <button
+                            key={index}
                             onClick={()=>handleClick(emoji)}
                             className="
                                 p-[2px]
@@ -227,8 +233,9 @@ const EmojiDialogue = ({ setValue, getValues }) => {
                 </div>
                 <h4 className="text-gray-700 mt-5 text-sm font-semibold">Objects</h4>
                 <div className="flex flex-wrap items-center">
-                    {objectEmojis.map((emoji)=>(
+                    {objectEmojis.map((emoji, index)=>(
                         <button
+                            key = {index}
                             onClick={()=>handleClick(emoji)}
                             className="
                                 p-[2px]
